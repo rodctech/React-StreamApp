@@ -1,4 +1,4 @@
-//Push to GitHub test 1
+//Push to GitHub test
 import React from 'react'
 import ReactDOM from 'react-dom'
 
