@@ -1,53 +1,69 @@
 import React, { Component } from "react";
-import {Field, reduxForm } from "redux-form";
+import { Field, reduxForm } from "redux-form";
 //Field is UpperCase since React Component that will show on screen.
 // reduxForm is a function same functionality as the connect() from react-redux
 
 class StreamCreate extends Component {
-    renderInput({input, label }) {  //  destructured: formProps){
-       // console.log(formProps);
-        return (    // destructured: formProps.input} />
-          <div className={"field"}>
-            <label>{label} </label>
-           <input {...input} />
-          </div>
-        /*  <input
-            onChange={formProps.input.onChange}
-            value={formProps.input.value}
-          />*/
-        );
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className={"ui error message"}>
+          <div className={"header"}>{error}</div>
+        </div>
+      );
     }
+  }
 
-    onSubmit(formValues){
-     // console.log(formValues);
-      //event.preventDefault();
-    }
-    render() {
-     // console.log(this.props);
-        return (
-          <form onSubmit={this.props.handleSubmit(this.onSubmit)} className={"ui form"}>
-              <Field name={"title"} component={this.renderInput} label="Enter Title"/>
-              <Field name={"description"} component={this.renderInput} label="Enter Description"/>
-            <button className={"ui button primary"}>Submit</button>
-          </form>
-        );
-    }
+  renderInput = ({ input, label, meta }) => {  //  destructured: formProps){
+    //console.log(meta);
+    // console.log(formProps);
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (    // destructured: formProps.input} />
+      // autoComplete turns off AutoFill dropDown
+      <div className={className}>
+        <label>{label} </label>
+        <input {...input} autoComplete={"off"}/>
+        {this.renderError(meta)}
+      </div>      //<div>{meta.error}</div>
+      /*  <input
+          onChange={formProps.input.onChange}
+          value={formProps.input.value}
+        />*/
+    );
+  };
+
+  onSubmit(formValues) {
+    // console.log(formValues);
+    //event.preventDefault();
+  }
+
+  render() {
+    // console.log(this.props);
+    return (
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className={"ui form error"}>
+        <Field name={"title"} component={this.renderInput} label="Enter Title"/>
+        <Field name={"description"} component={this.renderInput} label="Enter Description"/>
+        <button className={"ui button primary"}>Submit</button>
+      </form>
+    );
+  }
 }
 
 const validate = formValues => {
   const errors = {};
 
-  if(!formValues.title){
-    errors.title ="you must enter a title";
+  if (!formValues.title) {
+    errors.title = "You must enter a title";
   }
-  if(!formValues.description){
-    errors.description ="you must enter a description";
+  if (!formValues.description) {
+    errors.description = "You must enter a description";
   }
   return errors;
 };
 
 export default reduxForm({
-    form: 'streamCreateTemp'
+  form: "streamCreateTemp",
+  validate //:validate  can be condensed since same name
 })(StreamCreate);
 
 /*
