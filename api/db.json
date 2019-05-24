@@ -6,11 +6,6 @@
       "id": 1
     },
     {
-      "title": "Coding Stream",
-      "description": "Testing 2nd",
-      "id": 2
-    },
-    {
       "title": "With ID Stream",
       "description": "This stream was created signed in to include userId",
       "userId": "102430992153420707357",
