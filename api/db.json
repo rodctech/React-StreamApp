@@ -12,15 +12,14 @@
       "id": 3
     },
     {
-      "title": "Programmatic Navigation",
+      "title": "Programmatic Navigation for Edit",
       "description": "Using own History Object & Plain Router",
       "userId": "102430992153420707357",
       "id": 4
     },
     {
-      "title": "After Component Reuse",
-      "description": "We refactored Create Component",
-      "userId": "102430992153420707357",
+      "title": "After Edit initial values",
+      "description": "We added initial values in form",
       "id": 5
     }
   ]
