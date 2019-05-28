@@ -13,7 +13,41 @@ class StreamShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchStream(this.props.match.params.id);
+    const { id } = this.props.match.params;
+    // console.log(this.videoRef); //ERROR videoRef was showing as Null
+    //Stream is not fetched yet when render()>Loading.. runs.
+    this.props.fetchStream(id);
+    this.buildPlayer();
+  }
+
+  /* PORTION MOVED INTO buildPlayer() to prevent ^^^ Error
+    this.player =  flv.createPlayer({
+      type: 'flv',
+      url: `http://localhost:8000/live/${id}.flv`
+    });
+    this.player.attachMediaElement(this.videoRef.current);
+    this.player.load();*/
+
+  //this.player.play(); Supposed to autoPlay video, wont work in some browsers
+  //}
+
+  componentDidUpdate() {
+    this.buildPlayer();
+  }
+
+  buildPlayer() {
+    if (this.player || !this.props.stream) {
+      return;
+    }
+
+    const { id } = this.props.match.params;
+    this.props.fetchStream(id);
+    this.player = flv.createPlayer({
+      type: "flv",
+      url: `http://localhost:8000/live/${id}.flv`
+    });
+    this.player.attachMediaElement(this.videoRef.current);
+    this.player.load();
   }
 
   render() {
