@@ -1,31 +1,41 @@
 import React from "react";
-import Modal from '../Modal';
-import history from '../../history';
+import {connect} from "react-redux";
+import Modal from "../Modal";
+import history from "../../history";
+import {fetchStream} from "../../actions";
 
-const StreamDelete = () => {
-    const actions = (
+class StreamDelete extends React.Component {
+  componentDidMount() {
+    //console.log(this.props);
+    this.props.fetchStream(this.props.match.params.id);
+  }
+
+  renderActions() {
+    return (
       //Replaced <div> for <React.Fragment> to solve buttons visual issue
       //and to assign multiple(buttons) JSX vars to a single element by
       //using <React.Fragment> as a SINGLE TAG wrapping both buttons
       <React.Fragment>
-          <button className={"ui button negative"}>Delete</button>
-          <button className={"ui button"}>Cancel</button>
+        <button className={"ui button negative"}>Delete</button>
+        <button className={"ui button"}>Cancel</button>
       </React.Fragment>
     );
+  }
 
+  render() {
     return (
       <div>
-          Stream Delete
-          <Modal
-            title={"Delete Stream"}
-            content={"Are you sure you want to delete stream?"}
-            actions={actions}
-            onDismiss={() => history.push('/')}
-
-          />
-
+        Stream Delete
+        <Modal
+          title={"Delete Stream"}
+          content={"Are you sure you want to delete stream?"}
+          actions={this.renderActions()}  //Make sure to call () method
+          // to pass result to actions prop
+          onDismiss={() => history.push("/")}
+        />
       </div>
     );
-};
+  }
+}
 
-export default StreamDelete;
+export default connect(null, {fetchStream}) (StreamDelete);

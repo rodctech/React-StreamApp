@@ -30,3 +30,6 @@ const App = () => {
 };
 
 export default App;
+
+//NOTE in the <Routes in path. /:id could be called anythingWeWant.
+// It will show up on the console>match>prams>NAME(id Or) with that name
