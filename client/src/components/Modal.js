@@ -9,13 +9,13 @@ const Modal = (props) => {
       className={"ui dimmer modals visible active"}
     >
       <div onClick={(e) => e.stopPropagation()} className={"ui standard modal visible active "}>
-        <div className="header">Delete Stream</div>
+        <div className="header">{props.title}</div>
         <div className="content">
-          <p>Are you sure you want to delete stream?</p>
+          <p>{props.content}</p>
         </div>
         <div className="actions">
-          <div className="ui primary button">Delete!</div>
-          <div className="ui cancel button">Cancel</div>
+          {props.actions}
+
         </div>
       </div>
     </div>,
@@ -24,3 +24,7 @@ const Modal = (props) => {
 };
 
 export default Modal;
+
+//TOOK OUT of actions for Modal Component reuse
+/*<div className="ui primary button">Delete!</div>
+         <div className="ui cancel button">Cancel</div>*/
