@@ -6,12 +6,6 @@
       "id": 1
     },
     {
-      "title": "With ID Stream",
-      "description": "This stream was created signed in to include userId",
-      "userId": "102430992153420707357",
-      "id": 3
-    },
-    {
       "title": "Programmatic Navigation for Edit",
       "description": "Using own History Object & Plain Router",
       "userId": "102430992153420707357",
