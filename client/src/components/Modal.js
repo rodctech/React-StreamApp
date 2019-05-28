@@ -1,11 +1,12 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import history from "../history";
+//import history from "../history";
+// NO LONGER need  history when refactoring for Modal reuse
 
 const Modal = (props) => {
   return ReactDOM.createPortal(
     <div
-      onClick={()=> history.push('/')}
+      onClick={props.onDismiss}  //{()=> history.push('/')}
       className={"ui dimmer modals visible active"}
     >
       <div onClick={(e) => e.stopPropagation()} className={"ui standard modal visible active "}>
