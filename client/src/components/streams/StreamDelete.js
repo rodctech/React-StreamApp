@@ -3,10 +3,13 @@ import Modal from '../Modal';
 
 const StreamDelete = () => {
     const actions = (
-      <div>
+      //Replaced <div> for <React.Fragment> to solve buttons visual issue
+      //and to assign multiple(buttons) JSX vars to a single element by
+      //using <React.Fragment> as a SINGLE TAG wrapping both buttons
+      <React.Fragment>
           <button className={"ui button negative"}>Delete</button>
           <button className={"ui button"}>Cancel</button>
-      </div>
+      </React.Fragment>
     );
 
     return (
